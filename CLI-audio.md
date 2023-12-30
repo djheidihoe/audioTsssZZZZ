@@ -46,3 +46,29 @@ On the opposite direction, to split a stereo file into two mono (one for each ch
   
 `ffmpeg -i stereo.wav -map_channel 0.0.0 left.wav -map_channel 0.0.1 right.wav`  
   
+## now lets explore sox.
+Sox is like audacity in the CLI and can be automated nicely.
+> SoX - Sound eXchange, the Swiss Army knife of audio manipulation
+
+some nice statistics on the file can be seen with stat.  
+Human readable information is done with soxi file.name
+
+`sox audio.mp3 -n stat`
+`soxi audio.mp3`
+`soxi trim.mp3`
+
+next to `sox` there is also `play` and `rec`
+this plays a 3 sec organ synth.
+`play -n -c1 synth sin %-12 sin %-9 sin %-5 sin %-2 fade h 0.1 3 0.1`
+some command as simple as this will record into file
+`rec file.wav`
+
+from cht.sh, but i could not get this working on my machine. Not sure if this is the way to go here or rather use GUI. But nice to have such a low level way on audio in the future.
+
+curl cht.sh/sox/rec
+`rec snd.wav silence 1 .5 2.85% 1 1.0 3.0% vad gain -n  : newfile : restart`
+
+speed up by 2x -- also apply pitch correction
+`sox audio.mp3 speedup.mp3 speed 2.0`
+`play speedup.mp3`
+`sox audio.mp3 speedup2.mp3 speed 2.0 pitch -200`
